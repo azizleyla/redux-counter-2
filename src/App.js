@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useDispatch } from "react";
+import { useSelector } from "react-redux";
 const App = () => {
   const [inputValue, setInputValue] = useState(0);
-
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.counter);
+  
   return (
     <div className="container">
       <button className="btn">Increment</button>
