@@ -1,18 +1,37 @@
-import React, { useState, useDispatch } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 const App = () => {
   const [inputValue, setInputValue] = useState(0);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.counter);
-  
+  const count = useSelector((state) => state.count);
+
   return (
     <div className="container">
-      <button className="btn">Increment</button>
-      <span className="count"></span>
-      <button className="btn">Decrement</button>
+      <button
+        className="btn"
+        onClick={() => dispatch({ type: "INCREMENT" })}
+      >
+        Increment
+      </button>
+      <span className="count">{count}</span>
+      <button
+        className="btn"
+        onClick={() => dispatch({ type: "DECREMENT" })}
+      >
+        Decrement
+      </button>
 
-      <input value={inputValue} type="number" />
-      <button className="btn">Increase</button>
+      <input
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        type="number"
+      />
+      <button
+        className="btn"
+        onClick={() => dispatch({ type: "INCREASE", payload: inputValue })}
+      >
+        Increase
+      </button>
       <button>Reset</button>
     </div>
   );
