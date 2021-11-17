@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { increase, decrement, increment } from "./redux/counter.actions";
+
 const App = () => {
   const [inputValue, setInputValue] = useState(0);
   const dispatch = useDispatch();
@@ -7,17 +9,11 @@ const App = () => {
 
   return (
     <div className="container">
-      <button
-        className="btn"
-        onClick={() => dispatch({ type: "INCREMENT" })}
-      >
+      <button className="btn" onClick={() => dispatch(increment())}>
         Increment
       </button>
       <span className="count">{count}</span>
-      <button
-        className="btn"
-        onClick={() => dispatch({ type: "DECREMENT" })}
-      >
+      <button className="btn" onClick={() => dispatch(decrement())}>
         Decrement
       </button>
 
@@ -28,7 +24,7 @@ const App = () => {
       />
       <button
         className="btn"
-        onClick={() => dispatch({ type: "INCREASE", payload: inputValue })}
+        onClick={() => dispatch(increase(inputValue))}
       >
         Increase
       </button>
